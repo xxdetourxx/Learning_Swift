@@ -1,0 +1,130 @@
+//: Playground - noun: a place where people can play
+
+import UIKit
+
+// If
+
+var optionalString: String? = "Hello!"
+print(optionalString == nil)
+
+var optionalName: String? = "John Appleseed"
+var greeting = "Hello!"
+if let name = optionalName {
+    greeting = "Hello, \(name)!"
+}
+print(greeting)
+
+// Switch
+
+let vegetable = "celery" //"red pepper"
+switch vegetable {
+case "celery":
+    print("Add some raisins and make ants on a log.")
+case "cucumber", "watercress":
+    print("That would make a good tea sandwich.")
+case let x where x.hasSuffix("pepper"):
+    print("Is it a spicy \(x)?")
+default:
+    print("Everything tastes good in soup.")
+}
+
+// Array operations
+
+let interestingNumbers = [
+    "Prime": [2, 3, 5, 7, 11, 13, 31],
+    "Fibonacci": [1, 1, 2, 3, 5, 8],
+    "Square": [1, 4, 9, 16, 25, 36],
+]
+
+var largest = 0
+var largestKind: String = "<unknown>"
+
+for (kind, numbers) in interestingNumbers {
+    for number in numbers {
+        if number > largest {
+            largest = number
+            largestKind = kind
+        }
+    }
+}
+
+print("The largest number was a \(largestKind) number.")
+print("The largest number was \(largest)")
+
+// While and repeat while loops
+
+var n = 2
+while n < 100 {
+    n *= 2
+}
+print(n)
+
+// used to make sure your loop is completed at least once
+var m = 2
+repeat {
+    m *= 2
+} while m < 100
+print(m)
+
+//
+
+var total = 0
+for i in 0..<4 {
+    total += i
+}
+print(total)
+
+// Functions and Closures
+
+func greet(person: String, day: String, special: String) -> String {
+    return "Hello \(person), today is \(day), and the special of the day is \(special)."
+}
+
+print(greet(person: "Bob", day: "Tuesday", special: "Tuna Salad"))
+
+// Using tuples
+
+// function takes an argument named "scores" that is a tuple 
+// containing 3 variables indexed at 0, all integers.
+func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) {
+
+    // set value of variables in tuple to 0
+    var min = scores[0]
+    var max = scores[0]
+    var sum = 0
+    
+    // for each score in the scores values
+    for score in scores {
+        // if the score is greater than "max" which = 0
+        if score > max {
+            // make "max" equal to "score" value of the tuple
+            max = score
+        // else if score is greater than "min" which = 0
+        } else if score < min {
+            // make "min" equal to "score" value of the tuple
+            min = score
+        }
+        // add the currect value of "score" to the "sum" variable of the tuple
+        sum += score
+    }
+    
+    // returns the values of the tuple variables to the code that
+    // called the function.
+    return (min, max, sum)
+}
+
+// Put scores into statistics, and makes a container for the tuple
+// while also passing a list of score values to the function.
+let statistics = calculateStatistics(scores: [5, 3, 100, 3, 9, 102])
+
+//refers to the minimum or lowest value in scores
+print("Sum of all scores is \(statistics.min)")
+print("Sum of all scores is \(statistics.0)")
+
+// refers to the maximum or highest value in scores
+print("Sum of all scores is \(statistics.max)")
+print("Sum of all scores is \(statistics.1)")
+
+// refers to the sum value of the tuple by name and number, count starts at 0
+print("Sum of all scores is \(statistics.sum)")
+print("Sum of all scores is \(statistics.2)")
